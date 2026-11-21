@@ -1,4 +1,4 @@
-// NebTech Store service worker.
+// NebTech Pharmacy service worker.
 //
 // Step 1 of offline support: keep the app shell loadable without internet.
 //  - /_next/static, /images, fonts: cache-first (hashed files never change)
@@ -10,7 +10,7 @@
 //
 // Bump VERSION to force every device to drop its caches on the next deploy.
 
-const VERSION = "v1";
+const VERSION = "v2";
 const STATIC_CACHE = `nebtech-static-${VERSION}`;
 const PAGE_CACHE = `nebtech-pages-${VERSION}`;
 const OFFLINE_URL = "/offline.html";

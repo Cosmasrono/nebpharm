@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "NebTech Store",
-  description: "Point of Sale & Inventory Management",
+  title: "NebTech Pharmacy",
+  description: "Pharmacy Point of Sale & Inventory Management",
   manifest: "/manifest.json",
   icons: {
     icon: [{ url: "/images/icons/icon.svg", type: "image/svg+xml" }, { url: "/images/icons/icon-192.png", sizes: "192x192" }],

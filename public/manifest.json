@@ -1,7 +1,7 @@
 {
-  "name": "NebTech Store",
+  "name": "NebTech Pharmacy",
   "short_name": "NebTech",
-  "description": "Point of Sale & Inventory Management",
+  "description": "Pharmacy Point of Sale & Inventory Management",
   "id": "/",
   "start_url": "/pos",
   "scope": "/",

@@ -58,7 +58,7 @@ export default function Sidebar({ user }) {
   return (
     <aside className="fixed inset-y-0 left-0 w-60 bg-slate-900 text-slate-300 flex flex-col z-30">
       <div className="px-5 py-4 border-b border-slate-800">
-        <div className="text-lg font-bold text-white">NebTech <span className="text-amber-400">Store</span></div>
+        <div className="text-lg font-bold text-white">NebTech <span className="text-amber-400">Pharmacy</span></div>
         <div className="text-xs text-slate-500 truncate">{user?.name}</div>
       </div>
       <nav className="flex-1 overflow-y-auto py-3">

@@ -47,7 +47,7 @@ async function main() {
   const roleMeta = {
     owner: ["System Owner", "Ultimate system authority and control"],
     super_admin: ["Super Admin", "Full system access"],
-    manager: ["Manager", "Store management access"],
+    manager: ["Manager", "Pharmacy management access"],
     cashier: ["Cashier", "Point of sale access"],
   };
   const roleMap = {};
@@ -87,7 +87,7 @@ async function main() {
   }
 
   // Categories
-  for (const name of ["General", "Electronics", "Accessories", "Trade-in"]) {
+  for (const name of ["General"]) {
     await prisma.category.upsert({ where: { name }, update: {}, create: { name } });
   }
   for (const name of ["Rent", "Utilities", "Salaries", "Transport", "Supplies", "Miscellaneous"]) {
@@ -99,7 +99,7 @@ async function main() {
     ["system_active", "1", "Master system on/off switch"],
     ["subscription_active", "1", "Subscription status"],
     ["subscription_expires_at", "", "Subscription expiry date (ISO)"],
-    ["business_name", "NebTech Store", "Business name shown on receipts"],
+    ["business_name", "NebTech Pharmacy", "Business name shown on receipts"],
     ["tax_rate", "0", "VAT/tax percentage applied at POS"],
   ];
   for (const [key, value, description] of settings) {
