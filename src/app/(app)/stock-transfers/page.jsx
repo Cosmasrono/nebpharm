@@ -13,7 +13,7 @@ export default function StockTransfersPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Stock transfers</h1>
         <button className="btn-primary" onClick={() => setCreating(true)}>New transfer</button>
       </div>
@@ -73,7 +73,7 @@ function TransferModal({ onClose, onDone, setMsg }) {
             {products.map((p) => <option key={p.id} value={p.id}>{p.name} (total {p.quantityInStock})</option>)}
           </select>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">From branch *</label>
             <select className="input" value={form.fromBranchId} onChange={set("fromBranchId")}>
               <option value="">Select…</option>

@@ -31,7 +31,7 @@ export default function CategoriesPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Categories</h1>
         <button className="btn-primary" onClick={() => setEditing({ name: "", description: "" })}>Add category</button>
       </div>

@@ -22,7 +22,7 @@ export default function PurchaseOrdersPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Purchase orders</h1>
         <button className="btn-primary" onClick={() => setCreating(true)}>New PO</button>
       </div>
@@ -166,7 +166,7 @@ function CreatePoModal({ onClose, onDone, setMsg }) {
   return (
     <Modal title="New purchase order" onClose={onClose} wide>
       <div className="space-y-3">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">Supplier *</label>
             <select className="input" value={supplierId} onChange={(e) => setSupplierId(e.target.value)}>
               <option value="">Select supplier…</option>
@@ -178,7 +178,7 @@ function CreatePoModal({ onClose, onDone, setMsg }) {
           </div>
         </div>
         <div className="rounded-lg border border-slate-200 p-3 space-y-2">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-2">
             <label className="label">Branch allocation</label>
             <div className="flex items-center gap-2">
               <button type="button" className="text-xs text-teal-700 hover:underline" onClick={suggestAllocations}>
@@ -257,25 +257,25 @@ function CreatePoModal({ onClose, onDone, setMsg }) {
                 </div>
               ) : (
                 <div className="grid grid-cols-12 gap-2">
-                  <input className="input col-span-4" placeholder="Product name *" value={it.newProduct.name} onChange={(e) => setNewProd(idx, "name", e.target.value)} />
-                  <input className="input col-span-2" placeholder="SKU *" value={it.newProduct.sku} onChange={(e) => setNewProd(idx, "sku", e.target.value)} />
-                  <select className="input col-span-3" value={it.newProduct.categoryId} onChange={(e) => setNewProd(idx, "categoryId", e.target.value)}>
+                  <input className="input col-span-6 sm:col-span-4" placeholder="Product name *" value={it.newProduct.name} onChange={(e) => setNewProd(idx, "name", e.target.value)} />
+                  <input className="input col-span-6 sm:col-span-2" placeholder="SKU *" value={it.newProduct.sku} onChange={(e) => setNewProd(idx, "sku", e.target.value)} />
+                  <select className="input col-span-6 sm:col-span-3" value={it.newProduct.categoryId} onChange={(e) => setNewProd(idx, "categoryId", e.target.value)}>
                     <option value="">Category *</option>
                     {categories.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
-                  <input type="number" step="0.01" className="input col-span-3" placeholder="Selling price *" value={it.newProduct.sellingPrice} onChange={(e) => setNewProd(idx, "sellingPrice", e.target.value)} />
+                  <input type="number" step="0.01" className="input col-span-6 sm:col-span-3" placeholder="Selling price *" value={it.newProduct.sellingPrice} onChange={(e) => setNewProd(idx, "sellingPrice", e.target.value)} />
 
-                  <input className="input col-span-4" placeholder="Generic name (e.g. Paracetamol 500mg)" value={it.newProduct.genericName} onChange={(e) => setNewProd(idx, "genericName", e.target.value)} />
-                  <input className="input col-span-3" placeholder="Brand (e.g. Panadol)" value={it.newProduct.brandName} onChange={(e) => setNewProd(idx, "brandName", e.target.value)} />
-                  <input className="input col-span-2" placeholder="Strength" value={it.newProduct.strength} onChange={(e) => setNewProd(idx, "strength", e.target.value)} />
-                  <select className="input col-span-3" value={it.newProduct.dosageForm} onChange={(e) => setNewProd(idx, "dosageForm", e.target.value)}>
+                  <input className="input col-span-6 sm:col-span-4" placeholder="Generic name (e.g. Paracetamol 500mg)" value={it.newProduct.genericName} onChange={(e) => setNewProd(idx, "genericName", e.target.value)} />
+                  <input className="input col-span-6 sm:col-span-3" placeholder="Brand (e.g. Panadol)" value={it.newProduct.brandName} onChange={(e) => setNewProd(idx, "brandName", e.target.value)} />
+                  <input className="input col-span-6 sm:col-span-2" placeholder="Strength" value={it.newProduct.strength} onChange={(e) => setNewProd(idx, "strength", e.target.value)} />
+                  <select className="input col-span-6 sm:col-span-3" value={it.newProduct.dosageForm} onChange={(e) => setNewProd(idx, "dosageForm", e.target.value)}>
                     <option value="">Dosage form…</option>
                     {["tablet","capsule","syrup","suspension","injection","cream","ointment","drops","inhaler","sachet","suppository","other"].map((f) => <option key={f} value={f}>{f}</option>)}
                   </select>
 
-                  <input className="input col-span-3" placeholder="Pack size (e.g. 20 tabs)" value={it.newProduct.packSize} onChange={(e) => setNewProd(idx, "packSize", e.target.value)} />
-                  <input className="input col-span-4" placeholder="Manufacturer" value={it.newProduct.manufacturer} onChange={(e) => setNewProd(idx, "manufacturer", e.target.value)} />
-                  <label className="flex items-center gap-2 text-sm col-span-5">
+                  <input className="input col-span-6 sm:col-span-3" placeholder="Pack size (e.g. 20 tabs)" value={it.newProduct.packSize} onChange={(e) => setNewProd(idx, "packSize", e.target.value)} />
+                  <input className="input col-span-6 sm:col-span-4" placeholder="Manufacturer" value={it.newProduct.manufacturer} onChange={(e) => setNewProd(idx, "manufacturer", e.target.value)} />
+                  <label className="flex items-center gap-2 text-sm col-span-12 sm:col-span-5">
                     <input type="checkbox" checked={it.newProduct.prescriptionRequired} onChange={(e) => setNewProd(idx, "prescriptionRequired", e.target.checked)} />
                     Prescription required (Rx)
                   </label>
@@ -283,9 +283,9 @@ function CreatePoModal({ onClose, onDone, setMsg }) {
               )}
 
               <div className="grid grid-cols-12 gap-2">
-                <input type="number" className="input col-span-3" placeholder="Qty ordered *" value={it.quantityOrdered} onChange={(e) => setItem(idx, "quantityOrdered", e.target.value)} />
-                <input type="number" step="0.01" className="input col-span-3" placeholder="Unit cost *" value={it.unitCost} onChange={(e) => setItem(idx, "unitCost", e.target.value)} />
-                <div className="col-span-6 text-right text-sm text-slate-500 self-center">
+                <input type="number" className="input col-span-6 sm:col-span-3" placeholder="Qty ordered *" value={it.quantityOrdered} onChange={(e) => setItem(idx, "quantityOrdered", e.target.value)} />
+                <input type="number" step="0.01" className="input col-span-6 sm:col-span-3" placeholder="Unit cost *" value={it.unitCost} onChange={(e) => setItem(idx, "unitCost", e.target.value)} />
+                <div className="col-span-12 sm:col-span-6 text-right text-sm text-slate-500 self-center">
                   Line total: {fmt(Number(it.quantityOrdered || 0) * Number(it.unitCost || 0))}
                 </div>
               </div>

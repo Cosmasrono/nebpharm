@@ -24,7 +24,7 @@ export default function PromotionsPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Promotions</h1>
         <button className="btn-primary" onClick={() => setEditing(EMPTY)}>New promotion</button>
       </div>
@@ -67,11 +67,11 @@ function PromoModal({ row, onClose, onSave }) {
   return (
     <Modal title={form.id ? "Edit promotion" : "New promotion"} onClose={onClose}>
       <div className="space-y-3">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">Name *</label><input className="input" value={form.name} onChange={set("name")} /></div>
           <div><label className="label">Code *</label><input className="input uppercase" value={form.code} onChange={set("code")} /></div>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div><label className="label">Type</label>
             <select className="input" value={form.type} onChange={set("type")}>
               <option value="percentage">Percent %</option><option value="fixed">Fixed KSh</option>
@@ -80,7 +80,7 @@ function PromoModal({ row, onClose, onSave }) {
           <div><label className="label">Value *</label><input type="number" step="0.01" className="input" value={form.value} onChange={set("value")} /></div>
           <div><label className="label">Min spend</label><input type="number" step="0.01" className="input" value={form.minSpend} onChange={set("minSpend")} /></div>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">Starts</label><input type="date" className="input" value={form.startDate} onChange={set("startDate")} /></div>
           <div><label className="label">Ends</label><input type="date" className="input" value={form.endDate} onChange={set("endDate")} /></div>
         </div>

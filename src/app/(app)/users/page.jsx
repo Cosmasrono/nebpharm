@@ -28,7 +28,7 @@ export default function UsersPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Users</h1>
         <button className="btn-primary" onClick={() => setEditing({ name: "", email: "", phone: "", password: "", roleIds: [], branchId: "", isActive: true })}>Add user</button>
       </div>
@@ -74,7 +74,7 @@ function UserModal({ row, roles, branches, onClose, onSave }) {
     <Modal title={form.id ? "Edit user" : "Add user"} onClose={onClose}>
       <div className="space-y-3">
         <div><label className="label">Name *</label><input className="input" value={form.name} onChange={set("name")} /></div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">Email *</label><input type="email" className="input" value={form.email} onChange={set("email")} /></div>
           <div><label className="label">Phone</label><input className="input" value={form.phone || ""} onChange={set("phone")} /></div>
         </div>

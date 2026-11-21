@@ -33,7 +33,7 @@ export default function ExpensesPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Expenses</h1>
         <button className="btn-primary" onClick={() => setCreating(true)}>Record expense</button>
       </div>
@@ -91,7 +91,7 @@ function ExpenseModal({ cats, onClose, onDone, setMsg }) {
             {cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
           </select>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">Amount (KSh) *</label><input type="number" step="0.01" className="input" value={form.amount} onChange={set("amount")} /></div>
           <div><label className="label">Date</label><input type="date" className="input" value={form.expenseDate} onChange={set("expenseDate")} /></div>
         </div>

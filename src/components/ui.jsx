@@ -25,8 +25,8 @@ export function Loading({ label = "Loading…", className = "" }) {
 
 export function Modal({ title, onClose, children, wide = false }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4">
-      <div className={`card w-full ${wide ? "max-w-2xl" : "max-w-md"} p-5 max-h-[90vh] overflow-y-auto`}>
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-900/60 p-2 sm:p-4">
+      <div className={`card w-full ${wide ? "max-w-2xl" : "max-w-md"} p-4 sm:p-5 max-h-[92vh] overflow-y-auto`}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-semibold">{title}</h2>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600">✕</button>

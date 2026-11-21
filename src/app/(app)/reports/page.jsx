@@ -39,7 +39,7 @@ export default function ReportsPage() {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card">
+        <div className="card overflow-x-auto">
           <div className="px-4 py-3 border-b border-slate-100 font-semibold text-sm">Daily sales</div>
           <table className="w-full">
             <thead><tr><th className="table-th">Day</th><th className="table-th text-right">Sales</th><th className="table-th text-right">Revenue</th></tr></thead>
@@ -51,7 +51,7 @@ export default function ReportsPage() {
             </tbody>
           </table>
         </div>
-        <div className="card">
+        <div className="card overflow-x-auto">
           <div className="px-4 py-3 border-b border-slate-100 font-semibold text-sm">Top products</div>
           <table className="w-full">
             <thead><tr><th className="table-th">Product</th><th className="table-th text-right">Qty sold</th><th className="table-th text-right">Revenue</th></tr></thead>

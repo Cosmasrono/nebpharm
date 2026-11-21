@@ -74,7 +74,7 @@ export default function PosPage() {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+    <div className={`grid grid-cols-1 lg:grid-cols-5 gap-4 ${cart.length ? "pb-20 lg:pb-0" : ""}`}>
       {/* Product grid */}
       <div className="lg:col-span-3 space-y-3">
         <div className="flex items-center gap-3">
@@ -116,8 +116,8 @@ export default function PosPage() {
       </div>
 
       {/* Cart */}
-      <div className="lg:col-span-2">
-        <div className="card sticky top-6 flex flex-col max-h-[calc(100vh-3rem)]">
+      <div className="lg:col-span-2 scroll-mt-20" id="cart">
+        <div className="card lg:sticky lg:top-6 flex flex-col lg:max-h-[calc(100vh-3rem)]">
           <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
             <span className="font-semibold text-sm">Current sale</span>
             {cart.length > 0 && (
@@ -132,15 +132,16 @@ export default function PosPage() {
                   <div className="text-xs text-slate-400">{fmt(i.unitPrice)} each</div>
                 </div>
                 <div className="flex items-center gap-1">
-                  <button className="w-7 h-7 rounded bg-slate-100 hover:bg-slate-200" onClick={() => setQty(i.productId, i.quantity - 1)}>−</button>
+                  <button className="w-9 h-9 lg:w-7 lg:h-7 rounded bg-slate-100 hover:bg-slate-200" onClick={() => setQty(i.productId, i.quantity - 1)}>−</button>
                   <input
-                    className="w-12 text-center text-sm border border-slate-200 rounded py-1"
+                    inputMode="numeric"
+                    className="w-11 lg:w-12 text-center text-sm border border-slate-200 rounded py-1"
                     value={i.quantity}
                     onChange={(e) => setQty(i.productId, parseInt(e.target.value) || 0)}
                   />
-                  <button className="w-7 h-7 rounded bg-slate-100 hover:bg-slate-200" onClick={() => setQty(i.productId, i.quantity + 1)}>+</button>
+                  <button className="w-9 h-9 lg:w-7 lg:h-7 rounded bg-slate-100 hover:bg-slate-200" onClick={() => setQty(i.productId, i.quantity + 1)}>+</button>
                 </div>
-                <div className="w-24 text-right text-sm font-semibold">{fmt(i.unitPrice * i.quantity)}</div>
+                <div className="w-20 sm:w-24 text-right text-sm font-semibold">{fmt(i.unitPrice * i.quantity)}</div>
               </div>
             ))}
             {!cart.length && <div className="px-4 py-10 text-center text-slate-400 text-sm">Tap a product to start a sale.</div>}
@@ -160,6 +161,19 @@ export default function PosPage() {
           </div>
         </div>
       </div>
+
+      {/* Mobile cart bar */}
+      {cart.length > 0 && (
+        <div className="lg:hidden fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 backdrop-blur px-4 py-3 shadow-[0_-4px_12px_rgba(0,0,0,0.06)]">
+          <button
+            className="btn-amber w-full !py-3 text-base justify-between"
+            onClick={() => document.getElementById("cart")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            <span>🛒 {cart.reduce((n, i) => n + i.quantity, 0)} item{cart.reduce((n, i) => n + i.quantity, 0) === 1 ? "" : "s"} · View cart</span>
+            <span>{fmt(total)}</span>
+          </button>
+        </div>
+      )}
 
       {completedSale && (
         <Modal title="Sale complete" onClose={() => setCompletedSale(null)}>
@@ -244,8 +258,8 @@ function Row({ label, value, className = "" }) {
 
 function Modal({ title, onClose, children }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4">
-      <div className="card w-full max-w-md p-5">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-900/60 p-2 sm:p-4">
+      <div className="card w-full max-w-md p-4 sm:p-5 max-h-[92vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-semibold">{title}</h2>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600">✕</button>

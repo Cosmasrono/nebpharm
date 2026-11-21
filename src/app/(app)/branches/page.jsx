@@ -40,7 +40,7 @@ export default function BranchesPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Branches</h1>
         <button className="btn-primary" onClick={() => setEditing(EMPTY)}>Add branch</button>
       </div>
@@ -92,7 +92,7 @@ function BranchModal({ row, onClose, onSave }) {
   return (
     <Modal title={form.id ? "Edit branch" : "Add branch"} onClose={onClose}>
       <div className="space-y-3">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className="label">Name *</label>
             <input className="input" value={form.name} onChange={set("name")} />
@@ -102,7 +102,7 @@ function BranchModal({ row, onClose, onSave }) {
             <input className="input font-mono uppercase" value={form.code || ""} onChange={setCode} placeholder="e.g. NRB01" />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">Location</label><input className="input" value={form.address || ""} onChange={set("address")} /></div>
           <div><label className="label">Phone</label><input className="input" value={form.phone || ""} onChange={set("phone")} /></div>
         </div>

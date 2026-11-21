@@ -26,7 +26,7 @@ export default function SuppliersPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Suppliers</h1>
         <button className="btn-primary" onClick={() => setEditing(EMPTY)}>Add supplier</button>
       </div>
@@ -66,7 +66,7 @@ function SupplierModal({ row, onClose, onSave }) {
     <Modal title={form.id ? "Edit supplier" : "Add supplier"} onClose={onClose}>
       <div className="space-y-3">
         <div><label className="label">Name *</label><input className="input" value={form.name} onChange={set("name")} /></div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div><label className="label">Contact person</label><input className="input" value={form.contactPerson || ""} onChange={set("contactPerson")} /></div>
           <div><label className="label">Phone</label><input className="input" value={form.phone || ""} onChange={set("phone")} /></div>
         </div>

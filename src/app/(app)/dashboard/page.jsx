@@ -86,7 +86,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card">
+        <div className="card overflow-x-auto">
           <div className="px-4 py-3 border-b border-slate-100 font-semibold text-sm">Recent sales</div>
           <table className="w-full">
             <thead><tr><th className="table-th">Receipt</th><th className="table-th">Cashier</th><th className="table-th text-right">Total</th></tr></thead>
@@ -103,7 +103,7 @@ export default function DashboardPage() {
           </table>
         </div>
 
-        <div className="card">
+        <div className="card overflow-x-auto">
           <div className="px-4 py-3 border-b border-slate-100 font-semibold text-sm">Low stock alerts</div>
           <table className="w-full">
             <thead><tr><th className="table-th">Product</th><th className="table-th text-right">In stock</th><th className="table-th text-right">Reorder at</th></tr></thead>

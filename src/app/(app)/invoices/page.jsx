@@ -22,7 +22,7 @@ export default function InvoicesPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Invoices</h1>
         <button className="btn-primary" onClick={() => setCreating(true)}>New invoice</button>
       </div>
@@ -78,7 +78,7 @@ function InvoiceModal({ onClose, onDone, setMsg }) {
   return (
     <Modal title="New invoice" onClose={onClose} wide>
       <div className="space-y-3">
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div><label className="label">Customer *</label><input className="input" value={form.customerName} onChange={set("customerName")} /></div>
           <div><label className="label">Phone</label><input className="input" value={form.customerPhone} onChange={set("customerPhone")} /></div>
           <div><label className="label">Due date</label><input type="date" className="input" value={form.dueDate} onChange={set("dueDate")} /></div>
@@ -87,10 +87,10 @@ function InvoiceModal({ onClose, onDone, setMsg }) {
           <label className="label">Line items</label>
           {items.map((it, idx) => (
             <div key={idx} className="grid grid-cols-12 gap-2">
-              <input className="input col-span-6" placeholder="Description" value={it.description} onChange={(e) => setItem(idx, "description", e.target.value)} />
-              <input type="number" className="input col-span-2" placeholder="Qty" value={it.quantity} onChange={(e) => setItem(idx, "quantity", e.target.value)} />
-              <input type="number" step="0.01" className="input col-span-3" placeholder="Unit price" value={it.unitPrice} onChange={(e) => setItem(idx, "unitPrice", e.target.value)} />
-              <button className="text-rose-500 col-span-1" onClick={() => setItems(items.filter((_, i) => i !== idx))}>✕</button>
+              <input className="input col-span-12 sm:col-span-6" placeholder="Description" value={it.description} onChange={(e) => setItem(idx, "description", e.target.value)} />
+              <input type="number" className="input col-span-4 sm:col-span-2" placeholder="Qty" value={it.quantity} onChange={(e) => setItem(idx, "quantity", e.target.value)} />
+              <input type="number" step="0.01" className="input col-span-6 sm:col-span-3" placeholder="Unit price" value={it.unitPrice} onChange={(e) => setItem(idx, "unitPrice", e.target.value)} />
+              <button className="text-rose-500 col-span-2 sm:col-span-1" onClick={() => setItems(items.filter((_, i) => i !== idx))}>✕</button>
             </div>
           ))}
           <button className="btn-secondary !py-1.5 text-sm" onClick={() => setItems([...items, { description: "", quantity: 1, unitPrice: "" }])}>+ Add line</button>

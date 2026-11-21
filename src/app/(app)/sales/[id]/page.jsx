@@ -24,7 +24,7 @@ export default function SaleDetailPage({ params }) {
 
   return (
     <div className="max-w-2xl space-y-4">
-      <div className="flex items-center justify-between print:hidden">
+      <div className="flex items-center justify-between flex-wrap gap-3 print:hidden">
         <h1 className="text-xl font-bold">Sale {sale.receiptNumber}</h1>
         <button className="btn-secondary" onClick={() => window.print()}>Print receipt</button>
       </div>

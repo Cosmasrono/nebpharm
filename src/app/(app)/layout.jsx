@@ -21,9 +21,9 @@ export default async function AppLayout({ children }) {
     <OfflineSupport />
     <div className="min-h-screen">
       <Sidebar user={session} />
-      <main className="pl-60 min-h-screen flex flex-col">
-        <div className="p-6 max-w-7xl mx-auto w-full flex-1">{children}</div>
-        <footer className="px-6 pb-6">
+      <main className="lg:pl-60 min-h-screen flex flex-col">
+        <div className="p-4 sm:p-6 max-w-7xl mx-auto w-full flex-1 min-w-0">{children}</div>
+        <footer className="px-4 sm:px-6 pb-6">
           <div className="max-w-7xl mx-auto text-center text-sm text-slate-500">
             Powered by{" "}
             <a href="https://nebtech.online" target="_blank" rel="noopener noreferrer" className="font-medium text-slate-700 hover:text-slate-900 underline underline-offset-2">

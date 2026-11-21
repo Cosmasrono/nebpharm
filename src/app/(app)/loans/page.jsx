@@ -20,7 +20,7 @@ export default function LoansPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="text-xl font-bold">Loans</h1>
         <button className="btn-primary" onClick={() => setCreating(true)}>Issue loan</button>
       </div>
@@ -95,7 +95,7 @@ function LoanModal({ onClose, onDone, setMsg }) {
           </select>
         </div>
         {isNew && (
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label className="label">Customer name *</label><input className="input" value={form.customerName} onChange={set("customerName")} /></div>
             <div><label className="label">Phone</label><input className="input" placeholder="07XX XXX XXX" value={form.customerPhone} onChange={set("customerPhone")} /></div>
           </div>
@@ -104,7 +104,7 @@ function LoanModal({ onClose, onDone, setMsg }) {
           <label className="label">Product description *</label>
           <input className="input" value={form.productDescription} onChange={set("productDescription")} />
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div><label className="label">Total amount (KSh) *</label><input type="number" step="0.01" className="input" value={form.totalAmount} onChange={set("totalAmount")} /></div>
           <div><label className="label">Interest %</label><input type="number" step="0.01" className="input" value={form.interestRate} onChange={set("interestRate")} /></div>
           <div><label className="label">Due date *</label><input type="date" className="input" value={form.dueDate} onChange={set("dueDate")} /></div>

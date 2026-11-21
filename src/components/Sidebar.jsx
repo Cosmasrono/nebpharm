@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { clearOfflinePages } from "@/components/OfflineSupport";
@@ -38,6 +39,16 @@ const NAV = [
 export default function Sidebar({ user }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  // Close the mobile drawer whenever the route changes.
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  // Lock page scroll while the drawer is open on small screens.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   const canSee = (item) => {
     if (user?.isAdmin) return true;
@@ -56,33 +67,56 @@ export default function Sidebar({ user }) {
   }
 
   return (
-    <aside className="fixed inset-y-0 left-0 w-60 bg-slate-900 text-slate-300 flex flex-col z-30">
-      <div className="px-5 py-4 border-b border-slate-800">
-        <div className="text-lg font-bold text-white">NebTech <span className="text-amber-400">Pharmacy</span></div>
-        <div className="text-xs text-slate-500 truncate">{user?.name}</div>
-      </div>
-      <nav className="flex-1 overflow-y-auto py-3">
-        {nav.map((group) => (
-          <div key={group.section} className="mb-3">
-            <div className="px-5 py-1 text-[10px] font-semibold uppercase tracking-widest text-slate-600">{group.section}</div>
-            {group.items.map((item) => {
-              const active = pathname === item.href || pathname.startsWith(item.href + "/");
-              return (
-                <Link key={item.href} href={item.href}
-                  className={`flex items-center gap-3 px-5 py-2 text-sm transition ${
-                    active ? "bg-teal-800/60 text-white border-r-2 border-amber-400" : "hover:bg-slate-800 hover:text-white"
-                  }`}>
-                  <span className="w-5 text-center">{item.icon}</span>
-                  {item.label}
-                </Link>
-              );
-            })}
+    <>
+      {/* Mobile top bar */}
+      <header className="lg:hidden sticky top-0 z-30 flex items-center gap-3 bg-slate-900 px-4 h-14 text-white">
+        <button
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
+          className="-ml-2 flex h-10 w-10 items-center justify-center rounded-lg hover:bg-slate-800"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+        <div className="text-base font-bold truncate">NebTech <span className="text-amber-400">Pharmacy</span></div>
+      </header>
+
+      {/* Backdrop */}
+      <div
+        onClick={() => setOpen(false)}
+        className={`lg:hidden fixed inset-0 z-40 bg-slate-900/60 transition-opacity ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
+      />
+
+      <aside className={`fixed inset-y-0 left-0 w-64 lg:w-60 bg-slate-900 text-slate-300 flex flex-col z-50 lg:z-30 transition-transform duration-200 lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className="px-5 py-4 border-b border-slate-800 flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <div className="text-lg font-bold text-white">NebTech <span className="text-amber-400">Pharmacy</span></div>
+            <div className="text-xs text-slate-500 truncate">{user?.name}</div>
           </div>
-        ))}
-      </nav>
-      <button onClick={logout} className="m-4 btn-secondary !bg-slate-800 !border-slate-700 !text-slate-300 hover:!bg-slate-700">
-        Sign out
-      </button>
-    </aside>
+          <button onClick={() => setOpen(false)} aria-label="Close menu" className="lg:hidden -mr-2 h-8 w-8 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white">✕</button>
+        </div>
+        <nav className="flex-1 overflow-y-auto py-3">
+          {nav.map((group) => (
+            <div key={group.section} className="mb-3">
+              <div className="px-5 py-1 text-[10px] font-semibold uppercase tracking-widest text-slate-600">{group.section}</div>
+              {group.items.map((item) => {
+                const active = pathname === item.href || pathname.startsWith(item.href + "/");
+                return (
+                  <Link key={item.href} href={item.href}
+                    className={`flex items-center gap-3 px-5 py-2.5 lg:py-2 text-sm transition ${
+                      active ? "bg-teal-800/60 text-white border-r-2 border-amber-400" : "hover:bg-slate-800 hover:text-white"
+                    }`}>
+                    <span className="w-5 text-center">{item.icon}</span>
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+          ))}
+        </nav>
+        <button onClick={logout} className="m-4 btn-secondary !bg-slate-800 !border-slate-700 !text-slate-300 hover:!bg-slate-700">
+          Sign out
+        </button>
+      </aside>
+    </>
   );
 }
